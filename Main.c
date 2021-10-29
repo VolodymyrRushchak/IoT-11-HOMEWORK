@@ -1,46 +1,36 @@
 #include <stdio.h>
+#define SIZE 20
 
 
 int main() {
-	int a;
-	int arr[20] = {0};
-	memset(arr,0,sizeof(arr));
+	int array[SIZE] = {0};
+	memset(array,0,sizeof(array));
 
-	int index = 0;
-	for (;;) {
+	int number;
+	for (int index = 0;  ; index++) {    //condition is missed, because program dont know how many numbers user want to enter
 
-		scanf_s("%d", &a);
-		if (a == -1) break;
-		arr[index] = a;
-		index++;
+		scanf_s("%d", &number);
+		if (number == -1) break;
+		array[index] = number;
 
 	}
 	
-	printf("%d", countOfTriangle(arr));
+	printf("%d", countOfTriangle(array));
 
 } 
 
 int countOfTriangle(int array[]) {
 
-	int size = 0;
-
-	for (int i = 0; i < 20; i++) {
-		if (array[i] == 0) break;
-		size++;
-	}
-
 	int temp;
-	for (int i = 0; i < size - 1; i++){
-		for (int j = 0; j < size - i - 1; j++){
+	for (int i = 0; i < SIZE - 1; i++){			//sorting array with bubble method	
+		for (int j = 0; j < SIZE - i - 1; j++){
 			if (array[j] > array[j + 1]) {
 				temp = array[j];
 				array[j] = array[j + 1];
 				array[j + 1] = temp;
 			}
-		}
+		}							
 	}
-
-	
 
 	int triCount = 0;
 
